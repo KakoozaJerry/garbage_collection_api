@@ -1,22 +1,57 @@
+// Dependencies
 const express = require('express');
 //const bodyParser= require('body-parser') 
-const app = express();
-app.use(express.urlencoded({extended: true}))
-app.use(express.static(__dirname + '/public'));
-// in the new version, bodyParser is incorparated in the express new version
 
+// Instantiations
+const app = express();
+
+
+// Configurations
 app.set('view engine', 'pug');
 app.set('views', './views');
 
+
+// Middleware
+// in the new version, bodyParser is incorparated in the express new version
+app.use(express.urlencoded({extended: true}))
+
+app.use((req, res, next) => {
+    console.log("A new request received at " + Date.now());
+    next();  
+ });
+ 
+
+// middleware for serving static files(css,js,images)
+app.use(express.static('public'));
+
+
+// Routes
 app.get('/', (req,res) => {
     res.send('Homepage! Hello world.')
 });
 
+app.get('/createEmployee', (req, res) => { 
+    res.render('createEmployee', {title: 'Employee'});
+})
 
+app.get('/createOrder', (req, res) => { 
+    res.render('createOrder', {title: 'Create Order'});
+})
+
+app.post('/createEmployee', (req,res)=>{
+    console.log(req.body)
+    res.send("Data successfully captured") 
+})
 
 app.get('/hello', (req, res) => {
     res.render('view');
 });
+
+app.get('*', (req, res)=> {
+    res.send('The route specified doesnt exist')
+})
+
+
 
 
 
