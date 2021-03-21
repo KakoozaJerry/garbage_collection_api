@@ -1,7 +1,7 @@
 extends layout
 block content
     header.card-header
-        h4.card-title Add Employee (Driver or Conductor) 
+        h4.card-title Register Employee (Driver or Conductor) 
     form(method="POST" action='/createEmployee')
         div.form-row
             div.col.form-group
@@ -11,8 +11,8 @@ block content
                 label Last name
                 input.form-control(name="lastname")
             div.col.form-group
-                label User name
-                input.form-control(name="username")
+                label Email
+                input.form-control(name="email")
         div.form-row
             div.col.form-group
                 label Gender
@@ -46,8 +46,12 @@ block content
                     option(value="conductor") Conductor
         div.form-row
             div.col.form-group
+                label Password 
+                input.form-control(name="password")
+        div.form-row
+            div.col.form-group
                 button.btn.btn-primary.btn-block Register Employee
         div.form-row
             div.pull-right
-                a(class='button', href='/employee') Employee List
+                a(class='button', href='/employees') Employee List
                 

@@ -47,6 +47,15 @@ app.get('/hello', (req, res) => {
     res.render('view');
 });
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+
+app.get('/employees', (req, res) => {
+    res.render('index');
+});
+
 app.get('*', (req, res)=> {
     res.send('The route specified doesnt exist')
 })
