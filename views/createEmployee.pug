@@ -2,7 +2,7 @@ extends layout
 block content
     header.card-header
         h4.card-title Register Employee (Driver or Conductor) 
-    form(method="POST" action='/createEmployee')
+    form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data")
         div.form-row
             div.col.form-group
                 label First name 

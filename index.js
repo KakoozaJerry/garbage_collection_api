@@ -1,5 +1,6 @@
 // Dependencies
 const express = require('express');
+const employeeRoutes = require('./routes/employeeRoutes')
 //const bodyParser= require('body-parser') 
 
 // Instantiations
@@ -26,7 +27,10 @@ app.use(express.static('public'));
 
 
 // Routes
-app.get('/', (req,res) => {
+
+app.use('/employee', employeeRoutes);
+
+/* app.use('/', (req,res) => {
     res.send('Homepage! Hello world.')
 });
 
@@ -37,8 +41,8 @@ app.get('/createEmployee', (req, res) => {
 app.get('/createOrder', (req, res) => { 
     res.render('createOrder', {title: 'Create Order'});
 })
-
-app.post('/createEmployee', (req,res)=>{
+ */
+/* app.post('/createEmployee', (req,res)=>{
     console.log(req.body)
     res.send("Data successfully captured") 
 })
@@ -54,7 +58,7 @@ app.get('/login', (req, res) => {
 
 app.get('/employees', (req, res) => {
     res.render('index');
-});
+}); */
 
 app.get('*', (req, res)=> {
     res.send('The route specified doesnt exist')
