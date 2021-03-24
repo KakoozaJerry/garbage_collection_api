@@ -4,6 +4,26 @@ html
         link(rel="stylesheet", href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
         link(rel='stylesheet', href='css/style.css')
         title= title
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+        a.navbar-brand(href='#') Stay Clean Bins
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        .collapse.navbar-collapse(id='navbarSupportedContent')
+            ul.navbar-nav.mr-auto
+                li.nav-item.active
+                    a.nav-link(href='#') Home
+                li.nav-item
+                    a.nav-link(href='/services') Services
+                li.nav-item
+                    a.nav-link(href='/about') About
+                li.nav-item
+                    a.nav-link(href='/employees') Employees
+                ul.navbar-nav.float-right
+                li.nav-item
+                    a.nav-link(href='/orders') Orders
+                li.nav-item.dropdown
+                    a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Account
+                    
     body
         div.row.justify-content-center
             div.col-md-6

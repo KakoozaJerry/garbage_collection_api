@@ -1,6 +1,12 @@
 // Dependencies
 const express = require('express');
-const employeeRoutes = require('./routes/employeeRoutes')
+const createEmployee = require('./routes/createEmployee');
+const login = require('./routes/login');
+const employeeList = require('./routes/employeeList');
+const homePage = require('./routes/homepage');
+const createOrder= require('./routes/createOrder');
+const orderList = require('./routes/orderList');
+const registerFrontDesk = require('./routes/registerFrontDesk')
 //const bodyParser= require('body-parser') 
 
 // Instantiations
@@ -28,47 +34,19 @@ app.use(express.static('public'));
 
 // Routes
 
-app.use('/employee', employeeRoutes);
-
-/* app.use('/', (req,res) => {
-    res.send('Homepage! Hello world.')
-});
-
-app.get('/createEmployee', (req, res) => { 
-    res.render('createEmployee', {title: 'Employee'});
-})
-
-app.get('/createOrder', (req, res) => { 
-    res.render('createOrder', {title: 'Create Order'});
-})
- */
-/* app.post('/createEmployee', (req,res)=>{
-    console.log(req.body)
-    res.send("Data successfully captured") 
-})
-
-app.get('/hello', (req, res) => {
-    res.render('view');
-});
-
-app.get('/login', (req, res) => {
-    res.render('login');
-});
+app.use('/employee', createEmployee);
+app.use('/', login);
+app.use('/', employeeList);
+app.use('/', homePage);
+app.use('/', createOrder);
+app.use('/', orderList);
+app.use('/', registerFrontDesk)
 
 
-app.get('/employees', (req, res) => {
-    res.render('index');
-}); */
-
+//Ignoring all non specified files
 app.get('*', (req, res)=> {
     res.send('The route specified doesnt exist')
 })
-
-
-
-
-
-
 
 
 
