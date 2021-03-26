@@ -1,7 +1,10 @@
 const express = require('express');
 const multer = require('multer');
-const router = express.Router();
+const mongoose = require('mongoose');
+const { check, validationResult } = require('express-validator');
 
+const router = express.Router();
+const Employee = mongoose.model('Employee');
 
 
 

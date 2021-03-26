@@ -9,7 +9,7 @@ const homePage = require('./routes/homepage');
 const createOrder= require('./routes/createOrder');
 const orderList = require('./routes/orderList');
 const registerFrontDesk = require('./routes/registerFrontDesk')
-const Employee = require('./models/Employee')
+require('./models/Employee')
 //const bodyParser= require('body-parser') 
 
 // Instantiations

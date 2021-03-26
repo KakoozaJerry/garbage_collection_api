@@ -11,10 +11,9 @@ const employeeSchema = new mongoose.Schema({
         type: String,
         required: 'Please Enter last name'
     },
-    nin: {
+    email: {
         type: String,
-        unique: true,
-        required: 'Please Enter NIN'
+        required: 'Please Enter Email'
     },
     gender: String,
     pastincidences:[{
