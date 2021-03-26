@@ -4,9 +4,12 @@ const router = express.Router();
 
 
 
+
 router.get('/createEmployee', (req,res) => {
     res.render('createEmployee')
 })
+
+
 
 
 //image upload
@@ -21,13 +24,19 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
+
 router.post('/createEmployee', upload.single('imageupload'), (req, res) => {
-    try {
-        res.send(req.file);
-    } catch (err) {
-        res.send(400);
-    }
+    const employee = new Employee(req.body);
+    employee.imageupload = req.file.path;
+    employee.save()
+    .then(() => { res.send('Thank you for your registration!')})
+    .catch((err) => {
+        console.log(err);
+        res.send('Sorry! Something went wrong.');
+    })
 })
 
 
+
 module.exports = router;
+

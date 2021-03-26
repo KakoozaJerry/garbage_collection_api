@@ -1,5 +1,7 @@
 // Dependencies
 const express = require('express');
+require('dotenv').config();
+const mongoose = require('mongoose');
 const createEmployee = require('./routes/createEmployee');
 const login = require('./routes/login');
 const employeeList = require('./routes/employeeList');
@@ -7,6 +9,7 @@ const homePage = require('./routes/homepage');
 const createOrder= require('./routes/createOrder');
 const orderList = require('./routes/orderList');
 const registerFrontDesk = require('./routes/registerFrontDesk')
+const Employee = require('./models/Employee')
 //const bodyParser= require('body-parser') 
 
 // Instantiations
@@ -16,6 +19,20 @@ const app = express();
 // Configurations
 app.set('view engine', 'pug');
 app.set('views', './views');
+
+//Database Connections
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  
+  mongoose.connection
+  .on('open', () => {
+    console.log('Mongoose connection open');
+  })
+  .on('error', (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
 
 
 // Middleware
@@ -30,6 +47,8 @@ app.use((req, res, next) => {
 
 // middleware for serving static files(css,js,images)
 app.use(express.static('public'));
+
+
 
 
 // Routes
