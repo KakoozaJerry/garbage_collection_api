@@ -5,18 +5,25 @@ block content
     table.table.table-striped
         thead 
             tr
-                th #
-                th First 
-                th Last 
-                th Handle
-        tbody 
-            tr 
-                th 1
-                td Mark 
-                td Otto 
-                td @mdo
-            tr 
-                th 2
-                td Jacob
-                td Thornton
-                td @fat
+                th Full Name 
+                th Email
+                th Gender
+                th Past incidences
+                th Role
+        tbody
+            if users.length
+            each user in users
+                tr
+                    td #{user.lastname +' '+ user.firstname}
+                    td #{user.email}
+                    td #{user.gender}
+                    td #{user.pastincidences}
+                    td #{user.role}
+                    td
+                        a(href='/employee/update/'+user._id) Update
+                    td
+                        form(method="post" action='/employee/delete')
+                            input(type="hidden", placeholder="", name="id", value=user._id)
+                            button.btn.btn-dark.btn-block(type="submit") Delete
+
+

@@ -47,6 +47,7 @@ app.use((req, res, next) => {
 
 // middleware for serving static files(css,js,images)
 app.use(express.static('public'));
+app.use('/public/images', express.static(__dirname + '/public/images'));
 
 
 
