@@ -27,7 +27,10 @@ router.get('/createEmployee', (req,res) => {
 router.get('/employeeList',async (req,res)=>{
     try {
         // find all the data in the Employee collection
-        const employeeDetails = await Employee.find();
+        let employeeDetails = await Employee.find();
+        if (req.query.gender) {
+            employeeDetails = await Employee.find({ gender: req.query.gender })
+        }
         res.render('employeeList', { users: employeeDetails, title: 'Employee List' })
     } catch (err) {
         res.send('Failed to retrive employee details');

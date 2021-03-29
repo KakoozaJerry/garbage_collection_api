@@ -2,6 +2,14 @@ extends layout
 block content
     header.card-header
         h4.card-title Employee List
+    div.form-row
+        div.col.form-group.col-md-12   
+            form.search(action='/employee/employeeList')
+                div.form-row
+                    div.col-md-8
+                        input.form-control(name='gender' placeholder="Enter your search term(gender) ...")
+                    div.col-md-4
+                        input.btn.btn-dark.btn-block(type="submit")
     table.table.table-striped
         thead 
             tr
