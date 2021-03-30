@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 const Employee = require('../models/Employee')
+const Registration = require('../models/Registration')
 //const Employee = mongoose.model('Employee');
 
 
@@ -23,6 +24,12 @@ router.get('/createEmployee', (req,res) => {
     res.render('createEmployee')
     
 })
+
+router.get('/registerfrontdesk', (req,res) => {
+    res.render('registerFrontDesk')
+    
+})
+
 
 router.get('/employeeList',async (req,res)=>{
     try {
@@ -61,6 +68,18 @@ router.post('/createEmployee', upload.single('imageupload'), async (req, res) =>
         employee.imageupload = req.file.path;
         await employee.save();
         res.redirect('/employee/employeeList');
+    }catch(err){
+        console.log(err);
+        res.send('Sorry! Something went wrong.');
+    }
+ });
+
+ router.post('/registerfrontdesk', async (req, res) => {
+    try {
+        console.log(req.body)
+        const registration = new Registration(req.body);
+        await registration.save();
+        res.redirect('/login');
     }catch(err){
         console.log(err);
         res.send('Sorry! Something went wrong.');

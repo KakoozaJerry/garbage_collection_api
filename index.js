@@ -8,13 +8,24 @@ const employeeList = require('./routes/employeeList');
 const homePage = require('./routes/homepage');
 const createOrder= require('./routes/createOrder');
 const orderList = require('./routes/orderList');
-const registerFrontDesk = require('./routes/registerFrontDesk')
 require('./models/Employee')
+require('./models/Registration')
 //const bodyParser= require('body-parser') 
 
 // Instantiations
 const app = express();
 
+// Requiring the express session
+const expressSession = require('express-session')({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+});
+
+// Requiring the passport
+const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Configurations
 app.set('view engine', 'pug');
@@ -38,6 +49,7 @@ mongoose.connect(process.env.DATABASE, {
 // Middleware
 // in the new version, bodyParser is incorparated in the express new version
 app.use(express.urlencoded({extended: true}))
+app.use(expressSession);
 
 app.use((req, res, next) => {
     console.log("A new request received at " + Date.now());
@@ -60,7 +72,6 @@ app.use('/', employeeList);
 app.use('/', homePage);
 app.use('/', createOrder);
 app.use('/', orderList);
-app.use('/', registerFrontDesk)
 
 
 //Ignoring all non specified files
