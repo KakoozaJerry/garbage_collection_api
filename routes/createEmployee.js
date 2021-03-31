@@ -21,28 +21,35 @@ router.get('/', async (req, res) => {
 
 
 router.get('/createEmployee', (req,res) => {
-    res.render('createEmployee')
-    
-})
+    if(req.session.user){
+        res.render('createEmployee')
+    }else{
+        console.log('Cannot find session');
+        res.redirect('/login')
+    }
+});
 
 router.get('/registerfrontdesk', (req,res) => {
     res.render('registerFrontDesk')
-    
 })
 
 
 router.get('/employeeList',async (req,res)=>{
-    try {
-        // find all the data in the Employee collection
-        let employeeDetails = await Employee.find();
-        if (req.query.gender) {
-            employeeDetails = await Employee.find({ gender: req.query.gender })
+    if(req.session.user){
+        try {
+            // find all the data in the Employee collection
+            let employeeDetails = await Employee.find();
+            if (req.query.gender) {
+                employeeDetails = await Employee.find({ gender: req.query.gender })
+            }
+            res.render('employeeList', { users: employeeDetails, title: 'Employee List' })
+        } catch (err) {
+            res.send('Failed to retrive employee details');
         }
-        res.render('employeeList', { users: employeeDetails, title: 'Employee List' })
-    } catch (err) {
-        res.send('Failed to retrive employee details');
+    }else{
+        console.log('Cannot find session');
+        res.redirect('/login')
     }
-
 })
 
 
@@ -103,12 +110,17 @@ router.post('/createEmployee', upload.single('imageupload'), async (req, res) =>
 
 // route to save the updated data
 router.post('/update', async (req, res) => {
-    try {
-        await Employee.findOneAndUpdate({_id:req.query.id}, req.body)
-        res.redirect('/employee/employeeList');
-    } catch (err) {
-        console.log(err)
-        res.status(404).send("Unable to update item in the database");
+    if(req.session.user){
+        try {
+            await Employee.findOneAndUpdate({_id:req.query.id}, req.body)
+            res.redirect('/employee/employeeList');
+        } catch (err) {
+            console.log(err)
+            res.status(404).send("Unable to update item in the database");
+        }
+    }else{
+        console.log('Cannot find session');
+        res.redirect('/login')
     }
 })
 
