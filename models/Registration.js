@@ -6,21 +6,14 @@ const registrationSchema = new mongoose.Schema({
         type: String,
         required: 'Please Enter First name'
     },
-    lastname: {
+    lastname: String,
+    email:{
         type: String,
-        required: 'Please Enter Last name'
-    },
-    email: {
-        type: String,
-        required: 'Please Enter Email'
-    },
-    password: {
-        type: String,
-        required: 'Please Enter Password'
+        unique: true,
+        required: 'Please Enter Email' 
     }
-})
+});
 
 
-registrationSchema.plugin(passportLocalMongoose);
-
+registrationSchema.plugin(passportLocalMongoose, { usernameField: "email" });
 module.exports = mongoose.model('Registration', registrationSchema);

@@ -9,7 +9,7 @@ const homePage = require('./routes/homepage');
 const createOrder= require('./routes/createOrder');
 const orderList = require('./routes/orderList');
 require('./models/Employee')
-require('./models/Registration')
+const Registration = require('./models/Registration')
 //const bodyParser= require('body-parser') 
 
 // Instantiations
@@ -61,6 +61,9 @@ app.use((req, res, next) => {
 app.use(express.static('public'));
 app.use('/public/images', express.static(__dirname + '/public/images'));
 
+passport.use(Registration.createStrategy());
+passport.serializeUser(Registration.serializeUser());
+passport.deserializeUser(Registration.deserializeUser());
 
 
 

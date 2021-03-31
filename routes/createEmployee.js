@@ -76,13 +76,18 @@ router.post('/createEmployee', upload.single('imageupload'), async (req, res) =>
 
  router.post('/registerfrontdesk', async (req, res) => {
     try {
-        console.log(req.body)
         const registration = new Registration(req.body);
-        await registration.save();
-        res.redirect('/login');
+        await Registration.register(registration, req.body.password, (err) => {
+            if (err)
+              { 
+               throw err
+              }
+            console.log(req.body)
+            res.redirect('/login')
+        })
     }catch(err){
-        console.log(err);
-        res.send('Sorry! Something went wrong.');
+        res.status(400).send('Sorry! Something went wrong.')
+        console.log(err)
     }
  });
 
