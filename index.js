@@ -76,6 +76,18 @@ app.use('/', homePage);
 app.use('/', createOrder);
 app.use('/', orderList);
 
+// logout
+app.post('/logout', (req, res) => {
+  if (req.session) {
+      req.session.destroy((err)=> {
+          if (err) {
+              console.log(err)
+          } else {
+              return res.redirect('/login');
+          }
+      })
+  }
+})
 
 //Ignoring all non specified files
 app.get('*', (req, res)=> {

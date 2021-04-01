@@ -32,6 +32,8 @@ block content
                     td
                         form(method="post" action='/employee/delete')
                             input(type="hidden", placeholder="", name="id", value=user._id)
-                            button.btn.btn-dark.btn-block(type="submit") Delete
+                            button.btn.btn-dark.btn-block(type="submit") Delete 
+    form(method="post" action='/logout')
+        button.btn.btn-dark.btn-block(type="submit") LogOut
 
 
