@@ -15,15 +15,15 @@ block content
                 tr
                     th Firstname
                     td 
-                        input.form-control(value = user.firstname name ="firstname")
+                        input.form-control.formsinput(value = user.firstname name ="firstname")
                 tr
                     th Lastname
                     td 
-                        input.form-control(value = user.lastname name ="lastname")
+                        input.form-control.formsinput(value = user.lastname name ="lastname")
                 tr
                     th Email
                     td 
-                        input.form-control(value = user.email name ="email")
+                        input.form-control.formsinput(value = user.email name ="email")
                 tr
                     th Gender
                         td 
@@ -44,9 +44,9 @@ block content
                 tr
                     th Role
                     td 
-                        select.form-control(name="role")  
+                        select.form-control.formsinput(name="role")  
                             option(value="driver" selected = user.role === "driver") Driver
                             option(value="conductor" selected = user.role === "conductor") Conductor
                 tr
                     td(colspan=2)
-                        button.btn.btn-dark.btn-block(type="submit") Update
+                        button.btn.btn-dark.btn-block.formsinput(type="submit") Update

@@ -2,3 +2,23 @@
   background-color: #f4f7f8;
   font-family: Georgia, "Times New Roman", Times, serif;
 }
+body{
+  background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  height: 100vh;
+}
+div{
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.formsinput{
+  border-radius: 15px 15px 15px 15px;
+}
+.newcircle{
+  border-radius: 8px;
+}

@@ -6,10 +6,10 @@ block content
         div.col.form-group.col-md-12   
             form.search(action='/employee/employeeList')
                 div.form-row
-                    div.col-md-8
-                        input.form-control(name='gender' placeholder="Enter your search term(gender) ...")
-                    div.col-md-4
-                        input.btn.btn-dark.btn-block(type="submit")
+                    div.col-md-10
+                        input.form-control.formsinput(name='gender' placeholder="Enter your search term(gender) ...")
+                    div.col-md-2
+                        input.btn.btn-block.btn-success.formsinput(type="submit" value="Search")
     table.table.table-striped
         thead 
             tr
@@ -32,8 +32,6 @@ block content
                     td
                         form(method="post" action='/employee/delete')
                             input(type="hidden", placeholder="", name="id", value=user._id)
-                            button.btn.btn-dark.btn-block(type="submit") Delete 
-    form(method="post" action='/logout')
-        button.btn.btn-dark.btn-block(type="submit") LogOut
+                            button.btn.btn-dark.btn-block.formsinput(type="submit") Delete
 
 

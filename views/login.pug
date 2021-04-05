@@ -1,20 +1,22 @@
 extends layout
 block content
-    div.card.text-center.forma
-        div.card-header
-                h4.card-title Log In 
-        div.card-body
-            form(method="POST" action='/login')
-                div.form-row
-                    div.col.form-group
-                        label Email
-                        input.form-control.form-control-sm(name="email")
-                div.form-row
-                    div.col.form-group
-                        label Password
-                        input.form-control.form-control-sm(name="password")
-                div.form-row
-                    div.col.form-group
-                        button.btn.btn-primary.btn-block Login
-                    div.col.form-group
-                        a(class='button btn btn-primary btn-block', href='/createEmployee') Register
+    div.row.justify-content-center
+        div.col-md-6
+            div.card.text-center.forma
+                div.card-header
+                        h4.card-title Log In 
+                div.card-body
+                    form(method="POST" action='/login')
+                        div.form-row
+                            div.col.form-group
+                                label Email
+                                input.form-control.form-control-sm.formsinput(name="email")
+                        div.form-row
+                            div.col.form-group
+                                label Password
+                                input.form-control.form-control-sm.formsinput(name="password")
+                        div.form-row
+                            div.col.form-group
+                                button.btn.btn-primary.btn-block.formsinput Login
+                            div.col.form-group
+                                a.formsinput(class='button btn btn-outline-secondary btn-block', href='employee/registerfrontdesk') Register
