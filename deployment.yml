@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: refactoryproject
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: refactoryproject
+  template:
+    metadata:
+      labels:
+        app: refactoryproject
+    spec:
+      containers:
+      - name: refactoryproject
+        image: amigoscode/kubernetes:springboot-react-fullstack-v1
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: refactoryproject
+spec:
+  type: NodePort
+  selector:
+    app: refactoryproject
+  ports:
+  - port: 80
+    targetPort: 8080
+
+
+
