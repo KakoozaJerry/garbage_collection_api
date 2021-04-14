@@ -67,6 +67,7 @@ passport.deserializeUser(Registration.deserializeUser());
 
 
 
+
 // Routes
 
 app.use('/employee', createEmployee);
@@ -75,6 +76,7 @@ app.use('/', employeeList);
 app.use('/', homePage);
 app.use('/', createOrder);
 app.use('/', orderList);
+
 
 // logout
 app.post('/logout', (req, res) => {

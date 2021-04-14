@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const Employee = require('../models/Employee')
 const Registration = require('../models/Registration')
+
 //const Employee = mongoose.model('Employee');
 
 
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
 
 router.get('/createEmployee', (req,res) => {
     if(req.session.user){
-        res.render('createEmployee')
+        res.render('createEmployee', { title: "Create Employee" })
     }else{
         console.log('Cannot find session');
         res.redirect('/login')
@@ -30,7 +31,7 @@ router.get('/createEmployee', (req,res) => {
 });
 
 router.get('/registerfrontdesk', (req,res) => {
-    res.render('registerFrontDesk')
+    res.render('registerFrontDesk', { title: "Register Front Desk" })
 })
 
 
@@ -42,7 +43,7 @@ router.get('/employeeList',async (req,res)=>{
             if (req.query.gender) {
                 employeeDetails = await Employee.find({ gender: req.query.gender })
             }
-            res.render('employeeList', { users: employeeDetails, title: 'Employee List' })
+            res.render('employeeList', { users: employeeDetails, title: 'Employee List'})
         } catch (err) {
             res.send('Failed to retrive employee details');
         }

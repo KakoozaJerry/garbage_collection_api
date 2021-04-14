@@ -2,23 +2,36 @@ extends layout
 block content
     header.card-header
         h4.card-title Register Front Desk Personel 
-    form(method="POST" action='/employee/registerfrontdesk')
+    form(method="POST" action='/employee/registerfrontdesk' id = "signup")
         div.form-row
-            div.col.form-group
+            div.form-field.col.form-group
                 label First name 
-                input.form-control(name="firstname")
-            div.col.form-group
+                input.form-control(name="firstname" id = "firstname" )
+                small
+            div.form-field.col.form-group
                 label Last name
-                input.form-control(name="lastname")
-            div.col.form-group
+                input.form-control(name="lastname" id = "lastname" )
+                small
+            div.form-field.col.form-group
                 label Email
-                input.form-control(name="email")
+                input.form-control(name="email" id = "email")
+                small
         div.form-row
-            div.col.form-group
+            div.form-field.col.form-group
+                label Username 
+                input.form-control( name="username" id = "username")
+                small
+        div.form-row
+            div.form-field.col.form-group
                 label Password 
-                input.form-control(type="password" name="password")
+                input.form-control(type="password" name="password" id = "password")
+                small
+            div.form-field.col.form-group
+                label Confirm Password 
+                input.form-control(type="password" name="confirm-password" id = "confirm-password")
+                small
         div.form-row
             div.col.form-group
-                button.btn.btn-primary.btn-block Register
-    
+                button.btn.btn-primary.btn-block(type="submit") Register
+     
                 

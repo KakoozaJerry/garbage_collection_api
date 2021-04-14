@@ -24,13 +24,16 @@ html
                         a.nav-link(href='/orders') Orders
                     li.nav-item.dropdown
                         a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Account
-                form.form-inline.my-2.my-lg-0(method="post" action='/logout')  
+                form.form-inline.my-2.my-lg-0(method="post" action='/logout')
                     button.btn.btn-outline-success.my-2.my-sm-0.formsinput(type="Submit") Log Out
+        
+                
     body
         div.container
             div.row.justify-content-center
                 div.card-body
                     block content
+        script(src="/js/validation.js")
     footer.row.justify-content-center.forma
         div.container
             block footer
