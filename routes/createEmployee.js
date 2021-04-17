@@ -30,9 +30,7 @@ router.get('/createEmployee', (req,res) => {
     }
 });
 
-router.get('/registerfrontdesk', (req,res) => {
-    res.render('registerFrontDesk', { title: "Register Front Desk" })
-})
+
 
 
 router.get('/employeeList',async (req,res)=>{
@@ -82,22 +80,7 @@ router.post('/createEmployee', upload.single('imageupload'), async (req, res) =>
     }
  });
 
- router.post('/registerfrontdesk', async (req, res) => {
-    try {
-        const registration = new Registration(req.body);
-        await Registration.register(registration, req.body.password, (err) => {
-            if (err)
-              { 
-               throw err
-              }
-            console.log(req.body)
-            res.redirect('/login')
-        })
-    }catch(err){
-        res.status(400).send('Sorry! Something went wrong.')
-        console.log(err)
-    }
- });
+ 
 
 
  router.get('/update/:id', async (req, res) => {

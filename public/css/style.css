@@ -68,3 +68,8 @@ footer {
 .btn:focus {
     outline: none;
 }
+
+.links{
+  color: black;
+  font-size:25px;
+}

@@ -4,13 +4,11 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const registrationSchema = new mongoose.Schema({ 
     firstname: {
         type: String,
-        required: 'Please Enter First name'
     },
     lastname: String,
     email:{
         type: String,
-        unique: true,
-        required: 'Please Enter Email' 
+        unique: true, 
     }
 });
 

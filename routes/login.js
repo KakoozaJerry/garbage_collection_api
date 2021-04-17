@@ -1,6 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const mongoose = require('mongoose');
+// const { check, validationResult } = require('express-validator');
+
+// const Employee = require('../models/Employee')
+const Registration = require('../models/Registration')
+
 
 router.get('/login', (req,res)=>{
     res.render('login', { title: "Login" })
@@ -12,4 +18,27 @@ router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}
     res.redirect('/employee/employeelist');
 })
 
-module.exports = router;
+
+
+router.get('/signup', (req,res) => {
+    res.render('registerFrontDesk', { title: "Register Front Desk" })
+})
+
+router.post('/signup', async (req, res) => {
+    try {
+        const registration = new Registration(req.body);
+        await Registration.register(registration, req.body.password, (err) => {
+            if (err)
+              { 
+               throw err
+              }
+            console.log(req.body)
+            res.redirect('/login')
+        })
+    }catch(err){
+        res.status(400).send('Sorry! Something went wrong.')
+        console.log(err)
+    }
+ });
+
+ module.exports = router;
