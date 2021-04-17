@@ -1,4 +1,5 @@
 const usernameEl = document.querySelector('#username');
+const firstnameEl = document.querySelector('#firstname');
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
 const confirmPasswordEl = document.querySelector('#confirm-password');
@@ -10,8 +11,8 @@ const checkUsername = () => {
 
     let valid = false;
 
-    const min = 3;
-    const max = 25;
+    const min = 2;
+    const max = 50;
 
     const username = usernameEl.value.trim();
 
@@ -36,6 +37,20 @@ const checkEmail = () => {
         showError(emailEl, 'Email is not valid.')
     } else {
         showSuccess(emailEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkNames = () => {
+    let valid = false;
+    const firstname = firstnameEl.value.trim();
+    if (!isRequired(firstname)) {
+        showError(firstnameEl, 'First name cannot be blank.');
+    } else if (!isNameCapital(firstname)) {
+        showError(firstnameEl, 'Please, start your name with a capital letter.')
+    } else {
+        showSuccess(firstnameEl);
         valid = true;
     }
     return valid;
@@ -82,6 +97,11 @@ const isEmailValid = (email) => {
     return re.test(email);
 };
 
+const isNameCapital = (firstname) => {
+    let regs = /^[A-Z][a-zA-Z]$/
+    return regs.test(firstname);
+};
+
 const isPasswordSecure = (password) => {
     const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     return re.test(password);
@@ -125,12 +145,14 @@ form.addEventListener('submit', function (e) {
     let isUsernameValid = checkUsername(),
         isEmailValid = checkEmail(),
         isPasswordValid = checkPassword(),
-        isConfirmPasswordValid = checkConfirmPassword();
+        isConfirmPasswordValid = checkConfirmPassword(),
+        isNameCapital = checkNames();
 
     let isFormValid = isUsernameValid &&
         isEmailValid &&
         isPasswordValid &&
-        isConfirmPasswordValid;
+        isConfirmPasswordValid &&
+        isNameCapital;
 
     // submit to the server if the form is valid
     if (!isFormValid) {
@@ -155,6 +177,9 @@ const debounce = (fn, delay = 500) => {
 
 form.addEventListener('input', debounce(function (e) {
     switch (e.target.id) {
+        case 'firstname':
+            checkNames();
+            break;
         case 'username':
             checkUsername();
             break;
