@@ -1,13 +1,15 @@
 .forma {
   background-color: #f4f7f8;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Courier New OS", "Courier New OS", "Courier New OS", "Courier New OS";
+  font-size: larger;
 }
 body{
   background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
   height: 100vh;
+  font-size:larger
 }
 div{
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Courier New OS", "Courier New OS", "Courier New OS","Courier New OS";
 }
 footer {
   position: fixed;
@@ -30,6 +32,10 @@ footer {
     --success-color: #28a745;
     --warning-color: #ffc107;
 }
+
+
+
+
 
 
 

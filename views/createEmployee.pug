@@ -5,16 +5,13 @@ block content
     form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data" id="createemployee")
         div.form-row
             div.form-field.col.form-group
-                label First name 
-                input.form-control.formsinput(name="firstname" id="firstname")
+                input.form-control.formsinput(name="firstname" id="firstname" placeholder="First Name")
                 small
             div.form-field.col.form-group
-                label Last name
-                input.form-control.formsinput(name="lastname" id = "lastname")
+                input.form-control.formsinput(name="lastname" id = "lastname" placeholder="Last Name")
                 small
             div.form-field.col.form-group
-                label Email
-                input.form-control.formsinput(name="email" id = "email")
+                input.form-control.formsinput(name="email" id = "email" placeholder="Email")
                 small
         div.form-row
             div.form-field.col.form-group
@@ -43,7 +40,7 @@ block content
         div.form-row
             div.form-field.col.form-group
                 label Residence
-                input.form-control.formsinput(type='text', name='residence' id = "residence")
+                input.form-control.formsinput(type='text', name='residence' id = "residence" placeholder="Please input your location")
                 small
             div.form-field.col.form-group
                 label Role 
@@ -62,12 +59,10 @@ block content
                 small
         div.form-row
             div.form-field.col.form-group
-                label NIN
-                input.form-control.formsinput(type='text', name='nin' id="nin")
+                input.form-control.formsinput(type='text', name='nin' id="nin" placeholder="NIN")
                 small
             div.form-field.col.form-group
-                label Drivers License Number
-                input.form-control.formsinput(type='text', name='license' id = "license")
+                input.form-control.formsinput(type='text', name='license' id = "license" placeholder="Drivers License Number")
                 small
         div.form-row
             div.col.form-group
