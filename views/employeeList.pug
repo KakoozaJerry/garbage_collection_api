@@ -28,10 +28,19 @@ block content
                     td #{user.pastincidences}
                     td #{user.role}
                     td
-                        a(href='/employee/update/'+user._id) Update
+                        a(href='/employee/update/'+user._id)
+                            button.btn.btn-dark
+                                i.bi.bi-pencil-square
                     td
                         form(method="post" action='/employee/delete')
                             input(type="hidden", placeholder="", name="id", value=user._id)
-                            button.btn.btn-dark.btn-block.formsinput(type="submit") Delete
+                            button.btn.btn-dark(type="submit") 
+                                i.bi.bi-x-square
+    div.form-row
+        div.col.form-group
+            a(href='/employee/createEmployee')
+                h1(style="margin-left: 50%; color:black;" )
+                    i.bi.bi-plus-circle-fill  Add Employee
+                    
 
 
