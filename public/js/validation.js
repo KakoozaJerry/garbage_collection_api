@@ -7,6 +7,7 @@ const lastnameEl = document.querySelector('#lastname');
 const birthdayEl = document.querySelector('#birthday');
 const ninEl = document.querySelector('#nin');
 const imageuploadEl = document.querySelector('#imageupload');
+const roleEl = document.querySelector('#role');
 
 const form1 = document.querySelector('#createemployee');
 
@@ -118,6 +119,29 @@ const checkAge = () => {
         showError(birthdayEl, 'You are below 18 years and ineligible')
     } else {
         showSuccess(birthdayEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkRole = () => {
+    let valid = false;
+    const role = roleEl.value.trim();
+    const birthday = birthdayEl.value.trim()
+    if (role === "driver") {
+        if(!isRequired(birthday)){
+            showError(birthdayEl, 'You cannot have a blank Birthday')
+        }else {
+            let dob = new Date(birthday);
+            let today = new Date();
+            let mili_dif = Math.abs(today.getTime() - dob.getTime());
+            let age = Math.floor(mili_dif / (1000 * 3600 * 24 * 365.25));
+            if(age<30){
+                showError(roleEl, "You are below the eligible age to be a driver.")
+            }
+        }
+    } else {
+        showSuccess(roleEl);
         valid = true;
     }
     return valid;
@@ -258,14 +282,16 @@ if(form1){
             isLastNameCapital = checkLastNames(),
             isNINValid = checkNIN(),
             isImageAttached = checkImage(),
-            calcAge = checkAge();
+            calcAge = checkAge(),
+            checkDriverAge = checkRole();
     
         let isFormValid = isEmailValid &&
             isNameCapital &&
             isLastNameCapital &&
             isNINValid && 
             isImageAttached &&
-            calcAge;
+            calcAge &&
+            checkDriverAge;
     
         // submit to the server if the form is valid
         if (!isFormValid) {
@@ -336,7 +362,9 @@ if(form1){
             case 'birthday':
                 checkAge();
                 break;
-            
+            case 'role':
+                checkRole();
+                break;  
         }
     }));
 }
