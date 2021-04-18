@@ -20,7 +20,11 @@ const employeeSchema = new mongoose.Schema({
         type: String
     }],
     imageupload: String,
-    role: String
+    role: String,
+    residence: String,
+    birthday: String,
+    nin: String,
+    license: String
 
 })
 

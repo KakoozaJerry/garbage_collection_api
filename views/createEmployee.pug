@@ -2,28 +2,32 @@ extends layout
 block content
     header.card-header
         h4.card-title Register Employee (Driver or Conductor) 
-    form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data")
+    form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data" id="createemployee")
         div.form-row
-            div.col.form-group
+            div.form-field.col.form-group
                 label First name 
-                input.form-control.formsinput(name="firstname")
-            div.col.form-group
+                input.form-control.formsinput(name="firstname" id="firstname")
+                small
+            div.form-field.col.form-group
                 label Last name
-                input.form-control.formsinput(name="lastname")
-            div.col.form-group
+                input.form-control.formsinput(name="lastname" id = "lastname")
+                small
+            div.form-field.col.form-group
                 label Email
-                input.form-control.formsinput(name="email")
+                input.form-control.formsinput(name="email" id = "email")
+                small
         div.form-row
-            div.col.form-group
+            div.form-field.col.form-group
                 label Gender
                 div 
                     label.form-check.form-check-inline
-                        input.form-check-input(type="radio" name="gender" value="female")
+                        input.form-check-input(type="radio" name="gender" value="female" id = "gender")
                         span.form-check-label Female 
                     label.form-check.form-check-inline
-                    input.form-check-input(type="radio" name="gender" value="male")
+                    input.form-check-input(type="radio" name="gender" value="male" id = "gender")
                     span.form-check-label Male 
-            div.col.form-group
+                small
+            div.form-field.col.form-group
                 label Past incidences 
                 div
                     label.form-check.form-check-inline 
@@ -35,17 +39,39 @@ block content
                     label.form-check.form-check-inline 
                         span.form-check-label fuel thefts &nbsp
                     input.form-check-input(type="checkbox" checked name="pastincidences" value="fuelthefts")
+                small
         div.form-row
-            div.col.form-group
-                label Upload image
-                input(type='file', name='imageupload')
-            div.col.form-group
+            div.form-field.col.form-group
+                label Residence
+                input.form-control.formsinput(type='text', name='residence' id = "residence")
+                small
+            div.form-field.col.form-group
                 label Role 
-                select.form-control.formsinput(name="role")
+                select.form-control.formsinput(name="role" id = "role")
                     option(value="driver")  Driver
                     option(value="conductor") Conductor
+                small
+        div.form-row
+            div.form-field.col.form-group
+                label Date of Birth 
+                input.form-control.formsinput(type="date" id ="birthday" name="birthday")
+                small
+            div.form-field.col.form-group
+                label Upload image
+                input.form-control.formsinput(type='file', name='imageupload' id = "imageupload")
+                small
+        div.form-row
+            div.form-field.col.form-group
+                label NIN
+                input.form-control.formsinput(type='text', name='nin' id="nin")
+                small
+            div.form-field.col.form-group
+                label Drivers License Number
+                input.form-control.formsinput(type='text', name='license' id = "license")
+                small
         div.form-row
             div.col.form-group
-                button.btn.btn-primary.btn-block.formsinput Register Employee
+                button.btn.btn-primary.btn-block.formsinput(type="submit") Register Employee
+        
     
                 

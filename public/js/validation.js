@@ -3,16 +3,22 @@ const firstnameEl = document.querySelector('#firstname');
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
 const confirmPasswordEl = document.querySelector('#confirm-password');
+const lastnameEl = document.querySelector('#lastname');
+const birthdayEl = document.querySelector('#birthday');
+const ninEl = document.querySelector('#nin');
+
+const form1 = document.querySelector('#createemployee');
 
 const form = document.querySelector('#signup');
 
+const min = 2;
+const max = 50;
 
 const checkUsername = () => {
 
     let valid = false;
 
-    const min = 2;
-    const max = 50;
+    
 
     const username = usernameEl.value.trim();
 
@@ -49,8 +55,42 @@ const checkNames = () => {
         showError(firstnameEl, 'First name cannot be blank.');
     } else if (!isNameCapital(firstname)) {
         showError(firstnameEl, 'Please, start your name with a capital letter.')
+    } else if (!isBetween(firstname.length, min, max)) {
+        showError(firstnameEl, `Name must be between ${min} and ${max} characters.`)
     } else {
         showSuccess(firstnameEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkLastNames = () => {
+    let valid = false;
+    const lastname = lastnameEl.value.trim();
+    if (!isRequired(lastname)) {
+        showError(lastnameEl, 'Last name cannot be blank.');
+    } else if (!isNameCapital(lastname)) {
+        showError(lastnameEl, 'Please, start your last name with a capital letter.')
+    } else if (!isBetween(lastname.length, min, max)) {
+        showError(lastnameEl, `Name must be between ${min} and ${max} characters.`)
+    } else {
+        showSuccess(lastnameEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkNIN = () => {
+    let valid = false;
+    const nin = ninEl.value.trim();
+    if (!isRequired(nin)) {
+        showError(ninEl, 'NIN cannot be blank.');
+    } else if (!isNINValid(nin)) {
+        showError(ninEl, 'NIN format not valid, only includes capital letters and numbers e.t.c')
+    } else if (nin.length!==14) {
+        showError(ninEl, `NIN must be 14 characters.`)
+    } else {
+        showSuccess(ninEl);
         valid = true;
     }
     return valid;
@@ -98,13 +138,18 @@ const isEmailValid = (email) => {
 };
 
 const isNameCapital = (firstname) => {
-    let regs = /^[A-Z][a-zA-Z]$/
+    let regs = /^[A-Z]\D*$/
     return regs.test(firstname);
 };
 
 const isPasswordSecure = (password) => {
     const re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     return re.test(password);
+};
+
+const isNINValid = (nin) => {
+    let regs = /^[A-Z]{2}[0-9]{9}[A-Z]{3}$/
+    return regs.test(nin);
 };
 
 const isRequired = value => value === '' ? false : true;
@@ -136,29 +181,56 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
-
-form.addEventListener('submit', function (e) {
-    // prevent the form from submitting
+if(form){
+    form.addEventListener('submit', function (e) {
+        // prevent the form from submitting
+        
     
+        // validate fields
+        let isUsernameValid = checkUsername(),
+            isEmailValid = checkEmail(),
+            isPasswordValid = checkPassword(),
+            isConfirmPasswordValid = checkConfirmPassword(),
+            isNameCapital = checkNames();
+    
+        let isFormValid = isUsernameValid &&
+            isEmailValid &&
+            isPasswordValid &&
+            isConfirmPasswordValid &&
+            isNameCapital;
+    
+        // submit to the server if the form is valid
+        if (!isFormValid) {
+            e.preventDefault();
+        }
+    });
+    
+}
 
-    // validate fields
-    let isUsernameValid = checkUsername(),
-        isEmailValid = checkEmail(),
-        isPasswordValid = checkPassword(),
-        isConfirmPasswordValid = checkConfirmPassword(),
-        isNameCapital = checkNames();
 
-    let isFormValid = isUsernameValid &&
-        isEmailValid &&
-        isPasswordValid &&
-        isConfirmPasswordValid &&
-        isNameCapital;
+if(form1){
+    form1.addEventListener('submit', function (e) {
+        // prevent the form from submitting
+        
+    
+        // validate fields
+        let isEmailValid = checkEmail(),
+            isNameCapital = checkNames(),
+            isLastNameCapital = checkLastNames(),
+            isNINValid = checkNIN();
+    
+        let isFormValid = isEmailValid &&
+            isNameCapital &&
+            isLastNameCapital &&
+            isNINValid;
+    
+        // submit to the server if the form is valid
+        if (!isFormValid) {
+            e.preventDefault();
+        }
+    });
+}
 
-    // submit to the server if the form is valid
-    if (!isFormValid) {
-        e.preventDefault();
-    }
-});
 
 
 const debounce = (fn, delay = 500) => {
@@ -175,22 +247,46 @@ const debounce = (fn, delay = 500) => {
     };
 };
 
-form.addEventListener('input', debounce(function (e) {
-    switch (e.target.id) {
-        case 'firstname':
-            checkNames();
-            break;
-        case 'username':
-            checkUsername();
-            break;
-        case 'email':
-            checkEmail();
-            break;
-        case 'password':
-            checkPassword();
-            break;
-        case 'confirm-password':
-            checkConfirmPassword();
-            break;
-    }
-}));
+
+if(form){
+    form.addEventListener('input', debounce(function (e) {
+        switch (e.target.id) {
+            case 'firstname':
+                checkNames();
+                break;
+            case 'username':
+                checkUsername();
+                break;
+            case 'email':
+                checkEmail();
+                break;
+            case 'password':
+                checkPassword();
+                break;
+            case 'confirm-password':
+                checkConfirmPassword();
+                break;
+        }
+    }));
+}
+
+
+if(form1){
+    form1.addEventListener('input', debounce(function (e) {
+        switch (e.target.id) {
+            case 'email':
+                checkEmail();
+                break;
+            case 'firstname':
+                checkNames();
+                break;
+            case 'lastname':
+                checkLastNames();
+                break;
+            case 'nin':
+                checkNIN();
+                break;
+            
+        }
+    }));
+}
