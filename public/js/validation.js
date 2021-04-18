@@ -6,6 +6,7 @@ const confirmPasswordEl = document.querySelector('#confirm-password');
 const lastnameEl = document.querySelector('#lastname');
 const birthdayEl = document.querySelector('#birthday');
 const ninEl = document.querySelector('#nin');
+const imageuploadEl = document.querySelector('#imageupload');
 
 const form1 = document.querySelector('#createemployee');
 
@@ -96,6 +97,32 @@ const checkNIN = () => {
     return valid;
 };
 
+const checkImage = () => {
+    let valid = false;
+    const imageupload = imageuploadEl.value.trim();
+    if (!isRequired(imageupload)) {
+        showError(imageuploadEl, 'You are required to select an image.');
+    } else {
+        showSuccess(imageuploadEl);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkAge = () => {
+    let valid = false;
+    const birthday = birthdayEl.value.trim();
+    if (!isRequired(birthday)) {
+        showError(birthdayEl, 'Birthday cannot be blank.');
+    } else if (!calcAge(birthday)) {
+        showError(birthdayEl, 'You are below 18 years and ineligible')
+    } else {
+        showSuccess(birthdayEl);
+        valid = true;
+    }
+    return valid;
+};
+
 const checkPassword = () => {
     let valid = false;
 
@@ -150,6 +177,18 @@ const isPasswordSecure = (password) => {
 const isNINValid = (nin) => {
     let regs = /^[A-Z]{2}[0-9]{9}[A-Z]{3}$/
     return regs.test(nin);
+};
+
+const calcAge = (birthday) => {
+    let dob = new Date(birthday);
+    let today = new Date();
+    let mili_dif = Math.abs(today.getTime() - dob.getTime());
+    let age = Math.floor(mili_dif / (1000 * 3600 * 24 * 365.25));
+    if(age>=18){
+        return true;
+    }else {
+        return false;
+    }
 };
 
 const isRequired = value => value === '' ? false : true;
@@ -217,12 +256,16 @@ if(form1){
         let isEmailValid = checkEmail(),
             isNameCapital = checkNames(),
             isLastNameCapital = checkLastNames(),
-            isNINValid = checkNIN();
+            isNINValid = checkNIN(),
+            isImageAttached = checkImage(),
+            calcAge = checkAge();
     
         let isFormValid = isEmailValid &&
             isNameCapital &&
             isLastNameCapital &&
-            isNINValid;
+            isNINValid && 
+            isImageAttached &&
+            calcAge;
     
         // submit to the server if the form is valid
         if (!isFormValid) {
@@ -266,6 +309,7 @@ if(form){
             case 'confirm-password':
                 checkConfirmPassword();
                 break;
+            
         }
     }));
 }
@@ -285,6 +329,12 @@ if(form1){
                 break;
             case 'nin':
                 checkNIN();
+                break;
+            case 'imageupload':
+                checkImage();
+                break;
+            case 'birthday':
+                checkAge();
                 break;
             
         }
