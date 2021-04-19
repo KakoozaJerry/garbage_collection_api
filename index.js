@@ -2,12 +2,11 @@
 const express = require('express');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const createEmployee = require('./routes/createEmployee');
+const createEmployee = require('./routes/employees');
 const login = require('./routes/login');
-const employeeList = require('./routes/employeeList');
 const homePage = require('./routes/homepage');
-const createOrder= require('./routes/createOrder');
-const orderList = require('./routes/orderList');
+const orders= require('./routes/orders');
+const trucks = require('./routes/trucks')
 require('./models/Employee')
 const Registration = require('./models/Registration')
 //const bodyParser= require('body-parser') 
@@ -72,10 +71,10 @@ passport.deserializeUser(Registration.deserializeUser());
 
 app.use('/employee', createEmployee);
 app.use('/', login);
-app.use('/', employeeList);
 app.use('/', homePage);
-app.use('/', createOrder);
-app.use('/', orderList);
+app.use('/customer', orders);
+app.use('/truck', trucks)
+
 
 
 // logout

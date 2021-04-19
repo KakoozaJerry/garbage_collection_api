@@ -1,2 +1,47 @@
 extends layout
 block content
+    header.card-header
+        h4.card-title Orders List
+    div.form-row
+        div.col.form-group.col-md-12   
+            form.search(action='/customer/orderslist')
+                div.form-row
+                    div.col-md-10
+                        input.form-control.formsinput(name='servicerequest' placeholder="Enter your search term(Service Request) ...")
+                    div.col-md-2
+                        input.btn.btn-block.btn-success.formsinput(type="submit" value="Search")
+    table.table.table-striped
+        thead 
+            tr
+                th Full Name 
+                th Phone Number
+                th Service Type
+                th Request Type
+                th Timestamp
+        tbody
+            if orders.length
+            each order in orders
+                tr
+                    td #{order.lastname +' '+ order.firstname}
+                    td #{order.phone}
+                    td #{order.servicerequest}
+                    td #{order.requesttype}
+                    td #{order.date}
+                    td
+                        a(href='/customer/update/'+order._id)
+                            button.btn.btn-dark
+                                i.bi.bi-pencil-square
+                    td
+                        form(method="post" action='/customer/delete')
+                            input(type="hidden", placeholder="", name="id", value=order._id)
+                            button.btn.btn-dark(type="submit") 
+                                i.bi.bi-x-square
+    div.form-row
+        div.col.form-group
+            a(href='/customer/createorder')
+                button.btn.btn-dark(style="margin-left: 50%;")
+                    h1
+                        i.bi.bi-plus-circle-fill  New Order
+                        
+
+

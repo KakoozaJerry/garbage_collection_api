@@ -1,0 +1,40 @@
+extends layout
+block content
+    header.card-header
+        h4.card-title Order
+    div.form-row
+        div.col.form-group.col-md-12   
+            div.form-row
+                div.col-md-10
+                    p Here is the order information for #{order.firstname}
+    form(method="post" action="/customer/update?id="+order._id)
+        table.table
+            thead.thead-dark
+                tr
+                    th Firstname
+                    td 
+                        input.form-control.formsinput(value = order.firstname name ="firstname")
+                tr
+                    th Lastname
+                    td 
+                        input.form-control.formsinput(value = order.lastname name ="lastname")
+                tr
+                    th Phone Number
+                    td 
+                        input.form-control.formsinput(value = order.phone name ="phone")
+                tr
+                    th Service Requests
+                        td 
+                            label Sewage Tank Emptying&nbsp
+                            input(value= "Sewage Tank Emptying" type="checkbox" checked = order.servicerequest==="Sewage Tank Emptying" name="servicerequest") 
+                            label Garbage Collection&nbsp
+                            input(value= "Garbage Collection" type="checkbox" checked = order.servicerequest==="Garbage Collection" name="servicerequest")
+                tr
+                    th Type of Request
+                    td 
+                        select.form-control.formsinput(name="requesttype")  
+                            option(value="Subscription" selected = order.role === "Subscription") Subscription
+                            option(value="Once off" selected = order.role === "Once off") Once off
+                tr
+                    td(colspan=2)
+                        button.btn.btn-dark.btn-block.formsinput(type="submit") Update
