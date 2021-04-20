@@ -4,7 +4,9 @@ const trucksSchema = new mongoose.Schema({
     regno: {
         type: String,
         required: 'Please Registration Number'
-    }
+    },
+    codeno:String,
+    servicetype:String
 
 
 })

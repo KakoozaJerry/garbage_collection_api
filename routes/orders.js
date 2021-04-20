@@ -22,7 +22,7 @@ router.get('/orderlist', async (req,res)=>{
             }
             res.render('orderList', { orders: orderDetails, title: 'Order List'})
         } catch (err) {
-            res.send('Failed to retrive employee details');
+            res.send('Failed to retrive Order details');
         }
     }else{
         console.log('Cannot find session');

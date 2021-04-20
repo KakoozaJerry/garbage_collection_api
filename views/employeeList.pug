@@ -2,46 +2,54 @@ extends layout
 block content
     header.card-header
         h4.card-title Employee List
-    div.form-row
-        div.col.form-group.col-md-12   
-            form.search(action='/employee/employeeList')
-                div.form-row
-                    div.col-md-10
-                        input.form-control.formsinput(name='gender' placeholder="Enter your search term(gender) ...")
-                    div.col-md-2
-                        input.btn.btn-block.btn-success.formsinput(type="submit" value="Search")
-    table.table.table-striped
-        thead 
-            tr
-                th Full Name 
-                th Email
-                th Gender
-                th Past incidences
-                th Role
-        tbody
-            if users.length
-            each user in users
-                tr
-                    td #{user.lastname +' '+ user.firstname}
-                    td #{user.email}
-                    td #{user.gender}
-                    td #{user.pastincidences}
-                    td #{user.role}
-                    td
-                        a(href='/employee/update/'+user._id)
-                            button.btn.btn-dark
-                                i.bi.bi-pencil-square
-                    td
-                        form(method="post" action='/employee/delete')
-                            input(type="hidden", placeholder="", name="id", value=user._id)
-                            button.btn.btn-dark(type="submit") 
-                                i.bi.bi-x-square
-    div.form-row
-        div.col.form-group
-            a(href='/employee/createEmployee')
-                button.btn.btn-dark(style="margin-left: 50%;")
-                    h1
-                        i.bi.bi-plus-circle-fill  Add Employee
-                    
+    div.card.text-white.bg-dark.mb-3
+        div.card-body.form-row
+            div.col.form-group   
+                form.search(action='/employee/employeeList')
+                    div.form-row
+                        div.col-md-10
+                            input.form-control.formsinput(name='gender' placeholder="Enter your search term(gender) ...")
+                        div.col-md-2
+                            input.btn.btn-block.btn-dark.border-warning.formsinput(type="submit" value="Search")
+    div.card.text-white.bg-dark.mb-3
+        div.card-body
+            table.table.table-striped
+                thead 
+                    tr
+                        th Full Name 
+                        th Email
+                        th Gender
+                        th Past incidences
+                        th Role
+                        th 
+                        th
+                tbody
+                    if users.length
+                    each user in users
+                        tr
+                            td #{user.lastname +' '+ user.firstname}
+                            td #{user.email}
+                            td #{user.gender}
+                            td #{user.pastincidences}
+                            td #{user.role}
+                            td
+                                a(href='/employee/update/'+user._id)
+                                    button.btn.btn-dark
+                                        i.bi.bi-pencil-square
+                            td
+                                form(method="post" action='/employee/delete')
+                                    input(type="hidden", placeholder="", name="id", value=user._id)
+                                    button.btn.btn-dark(type="submit") 
+                                        i.bi.bi-x-square
+            div.form-row
+                div.col.form-group
+                    a
+                        button.btn.btn-dark.border-warning(style="margin-left: 76%;")
+                            h2
+                                span 
+                                    i.bi.bi-plus-circle-fill
+                                span 
+                                    a(href='/employee/createEmployee' style="color:white;") Add Employee
+                            
 
 

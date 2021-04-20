@@ -2,45 +2,47 @@ extends layout
 block content
     header.card-header
         h4.card-title Register New Order 
-    form(method="POST" action='/customer/createorder' id="createorder")
-        div.form-row
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="firstname" id="firstname" placeholder="First Name")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="lastname" id = "lastname" placeholder="Last Name")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="phone" id = "phone" placeholder="Phone Number")
-                small
-        
-        div.form-row
-            div.form-field.col.form-group
-                input.form-control.formsinput(type='text', name='location' id = "location" placeholder="Please input your location")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(type='text', name='nin' id="nin" placeholder="NIN")
-                small
-        div.form-row
-            div.form-field.col.form-group
-                label Service Requests
-                div
-                    label.form-check.form-check-inline 
-                        span.form-check-label Sewage Tank Emptying    &nbsp
-                        input.form-check-input(type="checkbox" name="servicerequest" value="Sewage Tank Emptying")
-                    label.form-check.form-check-inline 
-                        span.form-check-label Garbage Collection   &nbsp
-                        input.form-check-input(type="checkbox" checked name="servicerequest" value="Garbage Collection")
-                small
-            div.form-field.col.form-group
-                label Type of Request 
-                select.form-control.formsinput(name="requesttype" id = "requesttype")
-                    option(value="Subscription")  Subscription
-                    option(value="Once off") One Time
-                small
-        div.form-row
-            div.col.form-group
-                button.btn.btn-primary.btn-block.formsinput(type="submit") Register Order
-        
-    
+    div.card.text-white.bg-dark.mb-3
+        div.card-body
+            form(method="POST" action='/customer/createorder' id="createorder")
+                div.form-row
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="firstname" id="firstname" placeholder="First Name")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="lastname" id = "lastname" placeholder="Last Name")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="phone" id = "phone" placeholder="Phone Number")
+                        small
                 
+                div.form-row
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(type='text', name='location' id = "location" placeholder="Please input your location")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(type='text', name='nin' id="nin" placeholder="NIN")
+                        small
+                div.form-row
+                    div.form-field.col.form-group
+                        label Service Requests
+                        div
+                            label.form-check.form-check-inline 
+                                span.form-check-label Sewage Tank Emptying    &nbsp
+                                input.form-check-input(type="checkbox" name="servicerequest" value="Sewage Tank Emptying")
+                            label.form-check.form-check-inline 
+                                span.form-check-label Garbage Collection   &nbsp
+                                input.form-check-input(type="checkbox" checked name="servicerequest" value="Garbage Collection")
+                        small
+                    div.form-field.col.form-group
+                        label Type of Request 
+                        select.form-control.formsinput(name="requesttype" id = "requesttype")
+                            option(value="Subscription")  Subscription
+                            option(value="Once off") One Time
+                        small
+                div.form-row
+                    div.col.form-group
+                        button.btn.btn-primary.btn-block.formsinput(type="submit") Register Order
+                
+            
+                        

@@ -6,23 +6,44 @@ block content
                 div.card-body
                     h5.card-title Orders 
                     p.card-text You can view all orders at a click of a button 
-                    a.btn.btn-primary.btn-dark.border-primary(style="font-family:Segoe UI;font-style: normal;")
+                    a.btn.btn-primary.btn-dark.border-primary(style="font-family:Segoe UI;font-style: normal;" href="/customer/createorder")
                         i.bi.bi-plus   Create order 
         div.col-sm-6
-            div.card.text-white.bg-dark.mb-3
+            div.card.text-white.bg-dark.mb-3.text-right
                 div.card-body
                     h5.card-title Employees 
                     p.card-text View all employees information here 
-                    a.btn.btn-primary.btn-dark.border-primary(style="font-family:Segoe UI;font-style: normal;")
+                    a.btn.btn-primary.btn-dark.border-primary(style="font-family:Segoe UI;font-style: normal;" href="/employee/createEmployee")
                         i.bi.bi-plus   Add employee 
-    div.card.border-warning.text-white.bg-dark.mb-3(style="max-width: 18rem;")
-        div.card-header 
-            div.card-body.text-warning
-                h1.card-title
-                    span 
-                        i.bi.bi-truck 
-                    span 
-                        i.bi.bi-plus
-                    span Truck 
-                p.card-text 
+    div.card-deck
+        div.card.border-warning.text-white.bg-dark.mb-3
+            div.card-header 
+                div.card-body.text-warning
+                    h1.card-title
+                        span 
+                            i.bi.bi-list-ul 
+                        span 
+                            a.text-warning(href="/customer/orderlist") Orders 
+                    p.card-text
+        div.card.border-warning.text-white.bg-dark.mb-3
+            div.card-header 
+                div.card-body.text-warning
+                    h1.card-title
+                        span 
+                            i.bi.bi-truck 
+                        span 
+                            i.bi.bi-plus
+                        span 
+                            a.text-warning(href="/truck/createtruck") Truck 
+                    p.card-text 
+        div.card.border-warning.text-white.bg-dark.mb-3
+            div.card-header 
+                div.card-body.text-warning
+                    h1.card-title
+                        span 
+                            i.bi.bi-list-ul 
+                        span 
+                            a.text-warning(href="/employee/employeelist") Employees 
+                    p.card-text
+          
                 

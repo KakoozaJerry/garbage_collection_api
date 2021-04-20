@@ -2,26 +2,32 @@ extends layout
 block content
     header.card-header
         h4.card-title Register Truck 
-    div.card-body
-        form(method="POST" action='/truck/createtruck' id="createtruck")
-            div.form-row
-                div.form-field.col.form-group
-                    input.form-control.formsinput(name="regno" id="regno" placeholder="Registration Number")
-                    small
-                div.form-field.col.form-group
-                    input.form-control.formsinput(name="codeno" id = "codeno" placeholder="Code Number")
-                    small
-            div.form-row
-                div.form-field.col.form-group
-                    label Service Type 
-                    select.form-control.formsinput(name="servicetype" id = "servicetype")
-                        option(value="Sewage Tank Emptying")  Sewage Tank Emptying
-                        option(value="Garbage Collection") Garbage Collection
-                    small
-            
-            div.form-row
-                div.col.form-group
-                    button.btn.btn-primary.btn-block.formsinput(type="submit") Register Order
-            
-        
+    div.card.text-white.bg-dark.mb-3
+        div.card-body
+            div.card-body
+                form(method="POST" action='/truck/createtruck' id="createtruck")
+                    div.form-row
+                        div.form-field.col.form-group
+                            input.form-control.formsinput(name="regno" id="regno" placeholder="Registration Number")
+                            small
+                        div.form-field.col.form-group
+                            input.form-control.formsinput(name="codeno" id = "codeno" placeholder="Code Number")
+                            small
+                    div.form-row
+                        div.form-field.col.form-group
+                            label Service Type 
+                            select.form-control.formsinput(name="servicetype" id = "servicetype")
+                                option(value="Sewage Tank Emptying")  Sewage Tank Emptying
+                                option(value="Garbage Collection") Garbage Collection
+                            small
+                        div.form-field.col.form-group
+                            label Number of Conductors
+                            input.form-control.formsinput(name="condno" id = "condno" placeholder="Conductors Number")
+                            small
+                    
+                    div.form-row
+                        div.col.form-group
+                            button.btn.btn-primary.btn-block.formsinput(type="submit") Register Order
+                    
                 
+                        

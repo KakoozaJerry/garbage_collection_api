@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Truck = require('../models/Trucks')
 
 
 router.get('/createtruck',(req,res)=>{
@@ -15,13 +16,13 @@ router.get('/trucklist', async (req,res)=>{
     if(req.session.user){
         try {
             // find all the data in the Employee collection
-            let orderDetails = await Order.find();
+            let truckDetails = await Truck.find();
             if (req.query.servicerequest) {
-                orderDetails = await Order.find({ servicerequest: req.query.servicerequest })
+                truckDetails = await Truck.find({ servicerequest: req.query.servicerequest })
             }
-            res.render('orderList', { orders: orderDetails, title: 'Order List'})
+            res.render('truckList', { trucks: truckDetails, title: 'Truck List'})
         } catch (err) {
-            res.send('Failed to retrive employee details');
+            res.send('Failed to retrive Truck details');
         }
     }else{
         console.log('Cannot find session');
@@ -30,8 +31,27 @@ router.get('/trucklist', async (req,res)=>{
 })
 
 
+router.post('/createtruck', async (req, res) => {
+    try {
+        console.log(req.body)
+        const truck = new Truck(req.body);
+        await truck.save();
+        res.redirect('/truck/trucklist');
+    }catch(err){
+        console.log(err);
+        res.send('Sorry! Something went wrong.');
+    }
+ });
 
 
+ router.post('/delete', async (req, res) => {
+    try {
+        await Truck.deleteOne({ _id: req.body.id })
+        res.redirect('back')
+    } catch (err) {
+        res.status(400).send("Unable to delete item in the database");
+    }
+})
 
 
 

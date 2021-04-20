@@ -1,72 +1,74 @@
 extends layout
 block content
     header.card-header
-        h4.card-title Register Employee (Driver or Conductor) 
-    form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data" id="createemployee")
-        div.form-row
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="firstname" id="firstname" placeholder="First Name")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="lastname" id = "lastname" placeholder="Last Name")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(name="email" id = "email" placeholder="Email")
-                small
-        div.form-row
-            div.form-field.col.form-group
-                label Gender
-                div 
-                    label.form-check.form-check-inline
-                        input.form-check-input(type="radio" name="gender" value="female" id = "gender")
-                        span.form-check-label Female 
-                    label.form-check.form-check-inline
-                    input.form-check-input(type="radio" name="gender" value="male" id = "gender")
-                    span.form-check-label Male 
-                small
-            div.form-field.col.form-group
-                label Past incidences 
-                div
-                    label.form-check.form-check-inline 
-                        span.form-check-label accidents    &nbsp
-                        input.form-check-input(type="checkbox" checked name="pastincidences" value="accidents")
-                    label.form-check.form-check-inline 
-                        span.form-check-label fights   &nbsp
-                        input.form-check-input(type="checkbox" checked name="pastincidences" value="fights")
-                    label.form-check.form-check-inline 
-                        span.form-check-label fuel thefts &nbsp
-                    input.form-check-input(type="checkbox" checked name="pastincidences" value="fuelthefts")
-                small
-        div.form-row
-            div.form-field.col.form-group
-                label Residence
-                input.form-control.formsinput(type='text', name='residence' id = "residence" placeholder="Please input your location")
-                small
-            div.form-field.col.form-group
-                label Role 
-                select.form-control.formsinput(name="role" id = "role")
-                    option(value="driver")  Driver
-                    option(value="conductor") Conductor
-                small
-        div.form-row
-            div.form-field.col.form-group
-                label Date of Birth 
-                input.form-control.formsinput(type="date" id ="birthday" name="birthday")
-                small
-            div.form-field.col.form-group
-                label Upload image
-                input.form-control.formsinput(type='file', name='imageupload' id = "imageupload")
-                small
-        div.form-row
-            div.form-field.col.form-group
-                input.form-control.formsinput(type='text', name='nin' id="nin" placeholder="NIN")
-                small
-            div.form-field.col.form-group
-                input.form-control.formsinput(type='text', name='license' id = "license" placeholder="Drivers License Number")
-                small
-        div.form-row
-            div.col.form-group
-                button.btn.btn-primary.btn-block.formsinput(type="submit") Register Employee
-        
-    
+        h4.card-title Register Employee (Driver or Conductor)
+    div.card.text-white.bg-dark.mb-3
+        div.card-body 
+            form(method="POST" action='/employee/createEmployee' enctype="multipart/form-data" id="createemployee")
+                div.form-row
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="firstname" id="firstname" placeholder="First Name")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="lastname" id = "lastname" placeholder="Last Name")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(name="email" id = "email" placeholder="Email")
+                        small
+                div.form-row
+                    div.form-field.col.form-group
+                        label Gender
+                        div 
+                            label.form-check.form-check-inline
+                                input.form-check-input(type="radio" name="gender" value="female" id = "gender")
+                                span.form-check-label Female 
+                            label.form-check.form-check-inline
+                            input.form-check-input(type="radio" name="gender" value="male" id = "gender")
+                            span.form-check-label Male 
+                        small
+                    div.form-field.col.form-group
+                        label Past incidences 
+                        div
+                            label.form-check.form-check-inline 
+                                span.form-check-label accidents    &nbsp
+                                input.form-check-input(type="checkbox" checked name="pastincidences" value="accidents")
+                            label.form-check.form-check-inline 
+                                span.form-check-label fights   &nbsp
+                                input.form-check-input(type="checkbox" checked name="pastincidences" value="fights")
+                            label.form-check.form-check-inline 
+                                span.form-check-label fuel thefts &nbsp
+                            input.form-check-input(type="checkbox" checked name="pastincidences" value="fuelthefts")
+                        small
+                div.form-row
+                    div.form-field.col.form-group
+                        label Residence
+                        input.form-control.formsinput(type='text', name='residence' id = "residence" placeholder="Please input your location")
+                        small
+                    div.form-field.col.form-group
+                        label Role 
+                        select.form-control.formsinput(name="role" id = "role")
+                            option(value="driver")  Driver
+                            option(value="conductor") Conductor
+                        small
+                div.form-row
+                    div.form-field.col.form-group
+                        label Date of Birth 
+                        input.form-control.formsinput(type="date" id ="birthday" name="birthday")
+                        small
+                    div.form-field.col.form-group
+                        label Upload image
+                        input.form-control.formsinput(type='file', name='imageupload' id = "imageupload")
+                        small
+                div.form-row
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(type='text', name='nin' id="nin" placeholder="NIN")
+                        small
+                    div.form-field.col.form-group
+                        input.form-control.formsinput(type='text', name='license' id = "license" placeholder="Drivers License Number")
+                        small
+                div.form-row
+                    div.col.form-group
+                        button.btn.btn-primary.btn-block.formsinput(type="submit") Register Employee
                 
+            
+                        
